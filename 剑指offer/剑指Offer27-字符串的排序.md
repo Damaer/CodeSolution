@@ -1,0 +1,67 @@
+[toc]
+## 题目描述
+输入一个字符串,按字典序打印出该字符串中字符的所有排列。例如输入字符串abc,则按字典序打印出由字符a,b,c所能排列出来的所有字符串abc,acb,bac,bca,cab和cba。
+
+## 输入描述:
+输入一个字符串,长度不超过9(可能有字符重复),字符只包括大小写字母。
+
+## 思路以及解析
+使用回溯，通过交换字符实现，主要重复元素需要跳过。步骤：
+- 将字符串分为两部分，首字符和剩下字符。
+- 将首字符和其他的字符进行交换，并以剩下的元素组成的字符串进行递归全排列。
+- 直到交换完最后一个元素的时候，结束。
+
+```java
+import java.util.ArrayList;
+import java.util.Comparator;
+
+public class Solution {
+    public ArrayList<String> Permutation(String str) {
+        ArrayList<String> results = new ArrayList<>();
+        if (str != null && str.length() > 0) {
+            char[] chars = str.toCharArray();
+            process(chars, results, 0);
+        }
+        results.sort(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+        return results;
+    }
+
+    private void process(char[] chars, ArrayList<String> results, int index) {
+        if (index == chars.length - 1) {
+            if (!results.contains(new String(chars))) {
+                results.add(new String(chars));
+                return;
+            }
+        } else {
+            for (int j = index; j < chars.length; j++) {
+                swap(chars, index, j);
+                process(chars, results, index + 1);
+                swap(chars, index, j);
+            }
+        }
+    }
+
+    // 交换
+    private void swap(char[] str, int i, int j) {
+        if (i != j) {
+            char t = str[i];
+            str[i] = str[j];
+            str[j] = t;
+        }
+    }
+}
+```
+**此文章仅代表自己（本菜鸟）学习积累记录，或者学习笔记，如有侵权，请联系作者删除。人无完人，文章也一样，文笔稚嫩，在下不才，勿喷，如果有错误之处，还望指出，感激不尽~**
+
+**技术之路不在一时，山高水长，纵使缓慢，驰而不息。**
+
+**公众号：秦怀杂货店**
+
+![](https://img-blog.csdnimg.cn/img_convert/7d98fb66172951a2f1266498e004e830.png)
+
+
