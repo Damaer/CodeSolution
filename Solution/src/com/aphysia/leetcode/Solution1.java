@@ -1,11 +1,10 @@
-package com.aphysia.leetcode.leetcode001;
+package com.aphysia.leetcode;
 
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
-public class Solution {
+public class Solution1 {
     public int[] twoSum(int[] nums, int target) {
         int[] result = new int[2];
         if (nums == null || nums.length == 0) {

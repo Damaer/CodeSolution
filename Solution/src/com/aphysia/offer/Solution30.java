@@ -1,6 +1,6 @@
-package com.aphysia.offer.offer30;
+package com.aphysia.offer;
 
-public class Solution {
+public class Solution30 {
     public int FindGreatestSumOfSubArray(int[] array) {
         int res = array[0]; //记录当前所有子数组的和的最大值
         int max = array[0];   //包含array[i]的连续数组最大值

@@ -1,6 +1,6 @@
-package com.aphysia.offer.offer31;
+package com.aphysia.offer;
 
-public class Solution {
+public class Solution31 {
     public static void main(String[] args) {
         int result = NumberOf1Between1AndN_Solution(12);
         System.out.println(result);
