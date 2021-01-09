@@ -1,0 +1,135 @@
+## 题目
+
+给定两个大小为 `m` 和 `n` 的正序（从小到大）数组 `nums1` 和 `nums2`。请你找出并返回这两个正序数组的中位数。
+
+进阶：你能设计一个时间复杂度为 `O(log (m+n))` 的算法解决此问题吗？
+
+**示例 1：**
+
+>输入：nums1 = [1,3], nums2 = [2]
+输出：2.00000  
+解释：合并数组 = [1,2,3] ，中位数 2  
+
+**示例 2：**
+
+>输入：nums1 = [1,2], nums2 = [3,4]  
+输出：2.50000  
+解释：合并数组 = [1,2,3,4] ，中位数 (2 + 3) / 2 = 2.5
+
+**示例 3：**
+
+>输入：nums1 = [0,0], nums2 = [0,0]  
+输出：0.00000
+
+示例 4：
+
+>输入：nums1 = [], nums2 = [1]  
+输出：1.00000
+
+**示例 5：**
+
+>输入：nums1 = [2], nums2 = []  
+输出：2.00000
+ 
+
+**提示：**
+
+>nums1.length == m  
+nums2.length == n  
+0 <= m <= 1000  
+0 <= n <= 1000  
+1 <= m + n <= 2000  
+-106 <= nums1[i], nums2[i] <= 106  
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
+著作权归领扣网络所有。
+
+## 思路以及解答
+思路一：数组是有序的，利用双指针分别指向数组的第一个元素，对比大小，分别往后移动，合并到新的数组，然后直接取出中位数。
+```java
+class Solution {
+public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+    int n= nums1.length+nums2.length;
+    int[] num = new int[n];
+    int i=0,j=0,k=0;
+    while(i<nums1.length&&j<nums2.length){
+      if(nums1[i]<nums2[j]){
+        num[k]=nums1[i];
+        k++;
+        i++;
+      }else {
+        num[k]=nums2[j];
+        k++;
+        j++;
+      }
+    }
+    while(i<nums1.length){
+      num[k]=nums1[i];
+      k++;
+      i++;
+    }
+    while(j<nums2.length){
+      num[k]=nums2[j];
+      k++;
+      j++;
+    }
+    if(n%2==1){
+      return num[n/2];
+    }else{
+      return (num[n/2-1]+num[n/2])/2.00000;
+    }
+  }
+}
+```
+思路二：其实不需要创建新的数组，如果不要求时间复杂度的情况下，由于数组是有序的，获取中位数比较简单，先求出两个数组的长度，假设求得中位数是第 n 个（或者 n 和 n+1 个的平均），然后利用两个指针，从头向尾部移动，哪一个指针指向的数更小，移动的一共移动 n 步，取出这个数（或者两个数的平均）即可，这就不实现了。
+
+但是上面的思路，假设长度为n和m，只能做到O((n+m)/2)，也就是O(n+m)的时间复杂度。距离更优的解稍微有点距离。
+
+
+下面提供一个思路，巧妙利用二分的思想。假设数组长度分别为`n`和`m`，求两次中位数再求和！！！啥意思，也就是由于有可能中位数是中间那两个数相加之后取平均，也可能是中间那个数。所以只要我们把位置（此处的位置表示排序后的位置）为`（n+m+1）/2`的数和`（（n+m+2）/2）`的数之后，取平均，就可以兼容上面说的两种情况。
+
+```java
+class Solution {
+   public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        int right1 = nums1.length - 1;
+        int right2 = nums2.length - 1;
+        // 求两次取平均（如果总数为偶数，则取得中间两个取平均，如果总数为奇数，则两次取出中位数取平均，还是中位数）
+        return (getMidNum(nums1, 0, right1, nums2, 0, right2, (nums1.length + nums2.length + 1) / 2)
+                + getMidNum(nums1, 0, right1, nums2, 0, right2, (nums1.length + nums2.length + 2) / 2)) * 0.5;
+    }
+
+    public static double getMidNum(int[] nums1, int left1, int right1, int[] nums2, int left2, int right2, int k) {
+        // 数组1需要比较的长度
+        int len1 = right1 - left1 + 1;
+        // 数组2需要比较的长度
+        int len2 = right2 - left2 + 1;
+        if (len1 > len2) {
+            // 保证更长的数组在后面
+            return getMidNum(nums2, left2, right2, nums1, left1, right1, k);
+        }
+        // 如果数组1需要比较的段的长度为0，那么说明中位数存在在数组2中
+        if (len1 == 0) {
+            // 索引位置自然是数组2需要比较的左边界+个数-1
+            return nums2[left2 + k - 1];
+        }
+        // 如果k为1了，那么肯定是两个数组的第一个数之中的一个，更小的就是中位数
+        if(k==1){
+            return Math.min(nums1[left1],nums2[left2]);
+        }
+        // 取出第一个数组的中间位置的数
+        int num1_K = Math.min(left1 + k / 2 - 1, right1);
+        // 取出第二个数组的中间位置的数
+        int num2_k = Math.min(left2 + k / 2 - 1, right2);
+        // 两个数相比，如果第一个数比第二个数小，说明中位数在数组1的后半段和数组2中
+        if (nums1[num1_K] < nums2[num2_k]) {
+            k = k - (num1_K-left1+1);
+            return getMidNum(nums1, num1_K + 1, right1, nums2, left2, right2, k);
+        } else {
+            // 如果第一个数比第二个数大，说明中位数在数组2的前半段和数组1中
+            k = k - (num2_k-left2+1);
+            return getMidNum(nums1, left1, right1, nums2, num2_k + 1, right2, k);
+        }
+    }
+}
+```
