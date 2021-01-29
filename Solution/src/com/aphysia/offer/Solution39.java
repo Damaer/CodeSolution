@@ -1,6 +1,6 @@
 package com.aphysia.offer;
 
-public class Solution38 {
+public class Solution39 {
     public static void main(String[] args) {
 
     }
