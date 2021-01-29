@@ -1,0 +1,104 @@
+## 题目描述
+输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
+
+## 示例1
+**输入**
+
+> {1,2,3,4,5,#,6,#,#,7}
+
+**返回值**
+> 4
+
+## 思路以及解答
+
+声明：这里的输入是一个数的根节点，也就是从根节点，我们就可以获取到树的所有节点，而类似数组的表达方式`{1,2,3,4,5,#,6,#,#,7}`，则是按照层次来放的。(比如这个树就是4层)
+
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210128231614.png)
+
+### 递归左右子树
+第一种方法比较容易想到，对于任意一个节点`node`而言，我要想知道当前`node`节点（包括当前节点）的深度，肯定得求当前节点的左边节点（设为`left`）的深度`leftDeepth`，以及获取右节点（设为`right`）的深度`rightDeepth`，然后求两者最大+1（`Max{leftDeepth,rightDeepth}+1`），就是当前节点的深度。
+
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210128234045.png)
+
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210128234123.png)
+
+而递归中比较重要的一点，是结束条件。在这道题中，如果一个节点为`null`，就结束，并且当前节点的深度是`0`。代码超级无敌短：
+```java
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+public class Solution {
+    public int TreeDepth(TreeNode root) {
+        if(root==null)
+            return 0;
+        return Math.max(TreeDepth(root.left),TreeDepth(root.right))+1;
+    }
+}
+```
+
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210128234151.png)
+
+## 使用队列层次计算深度
+
+这是某同学提出的做法，思路是如果树的根节点不为空，则将根节点放进队列中。
+设置深度`deep`为0。
+使用`while`循环，只要队列不为空，则执行下面操作：
+1.获取队列的大小`size`。
+2.依次取出队列的前`size`个元素，如果该元素的左边节点不为空，则将左边节点放进队列，如果该元素的右边节点不为空，则将该元素的右边节点放进队列。
+3. 层次`deep+1`
+
+```java
+/**
+public class TreeNode {
+    int val = 0;
+    TreeNode left = null;
+    TreeNode right = null;
+
+    public TreeNode(int val) {
+        this.val = val;
+
+    }
+
+}
+*/
+import java.util.LinkedList;
+import java.util.Queue;
+public class Solution {
+    public int TreeDepth(TreeNode root) {
+      Queue<TreeNode> tree = new LinkedList<>();
+        if (root != null) {
+            tree.add(root);
+        }
+        int length = 0;
+        while (!tree.isEmpty()) {
+            int size = tree.size();
+            while (size > 0) {
+                TreeNode node = tree.peek();
+                if (node.left != null) {
+                    tree.add(node.left);
+                }
+                if (node.right != null) {
+                    tree.add(node.right);
+                }
+                tree.remove(node);
+                size--;
+            }
+            length++;
+        }
+        return length;  
+    }
+}
+```
+
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210128235138.png)
+
