@@ -10,13 +10,7 @@ import javax.sound.midi.Soundbank;
  */
 public class Solution39 {
     public static void main(String[] args) {
-        StringBuffer stringBuffer = new StringBuffer("123");
-        StringBuffer stringBuffer1 = new StringBuffer("456");
-        swap(stringBuffer,stringBuffer1);
-        System.out.println(stringBuffer);
-        System.out.println(stringBuffer1);
-
-        /*TreeNode treeNode = new TreeNode(1);
+        TreeNode treeNode = new TreeNode(1);
         treeNode.left = new TreeNode(2);
         treeNode.right = new TreeNode(3);
 
@@ -24,15 +18,9 @@ public class Solution39 {
         treeNode.left.right = new TreeNode(5);
         treeNode.right.left = new TreeNode(6);
         treeNode.right.right = new TreeNode(7);
-        Solution38 solution38 = new Solution38();
-        boolean result = solution38.IsBalanced_Solution(treeNode);
-        System.out.println(result);*/
-    }
-
-    public static void swap(StringBuffer b1,StringBuffer b2){
-        StringBuffer stringBuffer = b1;
-        b1=b2;
-        b2=stringBuffer;
+        Solution39 solution39 = new Solution39();
+        boolean result = solution39.IsBalanced_Solution(treeNode);
+        System.out.println(result);
     }
     public boolean IsBalanced_Solution(TreeNode root) {
         if (root != null) {
