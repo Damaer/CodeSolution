@@ -11,7 +11,7 @@ public class Solution41 {
 
     public static void main(String[] args) {
         Solution41 solution41 = new Solution41();
-        System.out.println(solution41.FindContinuousSequence(3));
+        System.out.println(solution41.FindContinuousSequence(9));
     }
 
     public ArrayList<ArrayList<Integer>> FindContinuousSequence(int sum) {
@@ -24,8 +24,9 @@ public class Solution41 {
                 tempSum = tempSum+j;
                 if(tempSum==sum){
                     results.add(integers);
+                    break;
                 }else if(tempSum>sum){
-                    continue;
+                    break;
                 }
             }
         }
