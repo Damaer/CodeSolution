@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author wenhaoxu
  * @date 2021/2/1 21:54
  */
 public class Solution41 {

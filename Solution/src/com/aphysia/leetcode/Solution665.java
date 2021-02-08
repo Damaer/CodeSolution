@@ -1,7 +1,6 @@
 package com.aphysia.leetcode;
 
 /**
- * @author wenhaoxu
  * @date 2021/2/7 10:37
  */
 public class Solution665 {
