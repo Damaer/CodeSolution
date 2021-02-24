@@ -88,9 +88,12 @@ LeetCode题目今年会更新 100-150 道左右( Flag 不能立得太离谱)。
 
 [开源编程笔记](https://damaer.github.io/Coding/#/)
 
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210107005121.png)
 平日时间宝贵，只能使用晚上以及周末时间学习写作，关注我，我们一起成长吧~
 
-![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210107005121.png)
+## 个人微信
+如果有什么问题可以及时联系我，纠正~
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210224231912.png)
 
 
 
