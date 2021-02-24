@@ -94,6 +94,6 @@ LeetCode题目今年会更新 100-150 道左右( Flag 不能立得太离谱)。
 ## 个人微信
 如果有什么问题可以及时联系我，纠正~
 
-<img src="https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210224231912.png" width = "200" height = "300" alt="" align=center />
+<img src="https://markdownpicture.oss-cn-qingdao.aliyuncs.com/20210224231912.png" width = "300" height = "300" alt="" align=center />
 
 
