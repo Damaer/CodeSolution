@@ -2,6 +2,11 @@
 
 目前正在更新中...
 
+150页完整剑指Offer刷题笔记，**领取方式**如下（无套路直接获取百度网盘的 🔗  链接,如果链接失效可以直接找我）:
+
+【秦怀杂货店】公众号内发送：**剑指Offer**
+![](https://markdownpicture.oss-cn-qingdao.aliyuncs.com/blog/扫码_搜索联合传播样式-白色版.png)
+
 ### 在线阅读地址
 
 GitHub Pages 完整刷题笔记阅读：[进入](https://damaer.github.io/CodeSolution/#/)
