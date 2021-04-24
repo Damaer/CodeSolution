@@ -1,8 +1,9 @@
-@[toc]
-# 题目描述
-用两个栈来实现一个队列，完成队列的Push和Pop操作。 队列中的元素为int类型。
+# 8.两个栈实现一个队列
+## 题目描述
+用两个栈来实现一个队列，完成队列的`Push`和`Pop`操作。 队列中的元素为`int`类型。
 
-# 思路和解法
+## 思路 & 解答
+
 - 栈的特性是先进后出
 - 队列的特性是先进先出
 
@@ -14,10 +15,10 @@
 (1). push 1--> push 2
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTEyMjM1LnBuZw?x-oss-process=image/format,png)
 
-(2).pop 1
+(2). pop 1
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTEyNDAxLnBuZw?x-oss-process=image/format,png)
 
-(3). push 3--> push 4
+(3). push 3 --> push 4
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTEyNDQ2LnBuZw?x-oss-process=image/format,png)
 
 (4).pop 2

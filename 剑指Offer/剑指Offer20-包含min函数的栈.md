@@ -1,13 +1,15 @@
-@[toc]
-# 题目描述
-定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。
+# 20.包含min函数的栈
+## 题目描述
+定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的`min`函数（时间复杂度应为`O（1）`）。
 
-# 思路以及解答
-主要是两个栈，一个存储所有元素的datas stack，一个存储最小值 mins stack。
+## 思路 & 解答
+主要是两个栈，一个存储所有元素的`datas stack`，一个存储最小值 `mins stack`。
 
-push一个元素的时候，都需要push进datas stack,但是push进入mins stack需要满足条件：当前的mins stack是空的，直接放入。或者当前的mins stack的栈顶元素大于或者等于push进来的值。
+`push`一个元素的时候，都需要`push`进`datas stack`,但是`push`进入`mins stack`需要满足条件：当前的`mins stack`是空的，直接放入。或者当前的`mins stack`的栈顶元素大于或者等于`push`进来的值。
 
-pop一个元素的时候，如果栈为空则什么都不操作，如果栈不为空，则判断datas的第一个元素是否和mins的第一个元素相等。如果相等的话那么就需要将mins和datas pop出去第一个元素，否则只需要将datas的第一个元素pop出去即可。
+`pop`一个元素的时候，如果栈为空则什么都不操作，如果栈不为空，则判断`datas`的第一个元素是否和`mins`的第一个元素相等。如果相等的话那么就需要将`mins`和`datas` `pop`出去第一个元素，否则只需要将`datas`的第一个元素`pop`出去即可。
+
+实现代码如下：
 
 ```java
 import java.util.Stack;

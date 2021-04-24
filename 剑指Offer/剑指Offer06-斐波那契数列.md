@@ -1,14 +1,14 @@
-@[toc]
-# 题目描述
-大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。
-n<=39
+# 6.斐波那契数列
 
+## 题目描述
 
-# 思路以及解答
+大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0，第1项是1）。(`n<=39`)
+
+## 思路 & 解答
 斐波那契数列大家都知道：
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzA1MjMzODI0LnBuZw?x-oss-process=image/format,png)
 
-## 直接暴力
+### 直接暴力
 思路很直接，利用函数进行递归即可。
 ```java
 public class Solution {
@@ -24,7 +24,7 @@ public class Solution {
 }
 ```
 
-## 重复利用结果
+### 重复利用结果(动态规划)
 直接递归会造成很多重复的计算，要是我们把计算结果先存起来，使用的时候再调用，那就可以优化。
 ```java
 public class Solution {

@@ -1,16 +1,18 @@
-@[toc]
-# 题目描述
-我们可以用2*1的小矩形横着或者竖着去覆盖更大的矩形。请问用n个2*1的小矩形无重叠地覆盖一个2*n的大矩形，总共有多少种方法？
+# 10.矩形覆盖
+## 题目描述
+我们可以用`2*1`的小矩形横着或者竖着去覆盖更大的矩形。请问用`n`个`2*1`的小矩形无重叠地覆盖一个`2*n`的大矩形，总共有多少种方法？
 
-比如n=3时，2*3的矩形块有3种覆盖方法：
+比如`n=3`时，`2*3`的矩形块有`3`种覆盖方法：
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTYwMjU1LnBuZw?x-oss-process=image/format,png)
 
-# 思路以及解法
+## 思路 & 解答
+### 递归实现
 
-先说思路，基本是递归，首先如果n为1，那么肯定只有一种，f(1)=1,如果n=2，f(2)=2
+先说思路，基本是递归，首先如果`n`为`1`，那么肯定只有一种，`f(1)=1`,如果`n=2`，`f(2)=2`
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTYyMDUyLnBuZw?x-oss-process=image/format,png)
 
-但是n>2的时候呢？那么我们的思路就可以分为第一次切分长度为1，和切分长度为2来计算，也就是剩下的是f(n-1)和f(n-2)，两者加起来即可。
+但是`n>2`的时候呢？那么我们的思路就可以分为第一次切分长度为`1`，和切分长度为`2`来计算，也就是剩下的是`f(n-1)`和`f(n-2)`，两者加起来即可。
+
 $$f(n)=\begin{cases}
 0,n<=0\\
 1,n=1\\
@@ -18,6 +20,7 @@ $$f(n)=\begin{cases}
 f(n-1)+f(n-2),n>2
 \end{cases}
 $$
+
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzExMTYyNDI5LnBuZw?x-oss-process=image/format,png)
 
 递归写法代码如下：
@@ -36,8 +39,8 @@ public class Solution {
     }
 }
 ```
-如果我不想使用递归呢？
-那么直接不断地把前面两个数加起来赋值给当前的数字即可。
+### 非递归实现
+如果我不想使用递归呢？那么直接不断地把前面两个数加起来赋值给当前的数字即可。
 ```java
 public class Solution {
     public int RectCover(int target) {

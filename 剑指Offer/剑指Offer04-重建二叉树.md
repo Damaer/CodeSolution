@@ -1,10 +1,11 @@
-@[toc]
-# 题目
-输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列{1,2,4,7,3,5,6,8}和中序遍历序列{4,7,2,1,5,3,8,6}，则重建二叉树并返回。
+# 4.重建二叉树
+## 题目描述
+输入某二叉树的前序遍历和中序遍历的结果，请重建出该二叉树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。例如输入前序遍历序列`{1,2,4,7,3,5,6,8}`和中序遍历序列`{4,7,2,1,5,3,8,6}`，则重建二叉树并返回。
 
-# 思路
+## 思路以及解答
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzAxMjM0MzQ3LnBuZw?x-oss-process=image/format,png)
-首先我们看上面的图片，首先数据保证了正确性，那么前序的第一个肯定是root节点，也就是1，那么我们需要在中序遍历中找到1的位置，左边就是这个root的左子树，右边就是root的右子树。
+
+我们看上面的图片，首先数据保证了正确性，那么前序的第一个肯定是`root`节点，也就是`1`，那么我们需要在中序遍历中找到`1`的位置，左边就是这个`root`的左子树，右边就是`root`的右子树。
 
 我们可以举个栗子：对根节点的左子树进行解析：
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzAxMjM0NTE3LnBuZw?x-oss-process=image/format,png)
@@ -12,9 +13,9 @@
 对右子树进行解析：
 ![](https://imgconvert.csdnimg.cn/aHR0cHM6Ly9tYXJrZG93bnBpY3R1cmUub3NzLWNuLXFpbmdkYW8uYWxpeXVuY3MuY29tLzIwMjAwNzAxMjM1MDI1LnBuZw?x-oss-process=image/format,png)
 
-只需要不断递归即可，当边界左边大于右边的时候，则停止
+只需要不断递归即可，当边界左边大于右边的时候，则停止。
 
-# 代码
+代码如下：
 ```java
 /**
  * Definition for binary tree

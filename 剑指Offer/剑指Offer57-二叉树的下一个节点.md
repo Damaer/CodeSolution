@@ -1,0 +1,99 @@
+# 57.二叉树的下一个节点
+
+## 题目描述
+给定一个二叉树和其中的一个结点，请找出中序遍历顺序的下一个结点并且返回。注意，树中的结点不仅包含左右子结点，同时包含指向父结点的指针。
+
+复杂的节点结构如下：
+```java
+public class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+}
+```
+
+## 思路 & 解答
+
+第一种思路是先通过循环，先找到根节点，然后通过根节点，中序遍历，中序遍历的过程中，对比节点，是否等于输入的节点，然后获取下一个节点放回。注意没有下一个节点的时候，应该返回`null`，不能数组越界。
+
+```java
+import java.util.ArrayList;
+import java.util.List;
+
+public class Solution {
+    private static List<TreeLinkNode> treeLinkNodes = new ArrayList<>();
+
+    public TreeLinkNode GetNext(TreeLinkNode pNode) {
+        if (pNode != null) {
+            TreeLinkNode root = pNode;
+            // 一直找到根节点
+            while (root != null && root.next != null) {
+                root = root.next;
+            }
+            inOrder(root);
+            for (int i = 0; i < treeLinkNodes.size(); i++) {
+                if (treeLinkNodes.get(i) == pNode) {
+                    return i + 1 < treeLinkNodes.size() ? treeLinkNodes.get(i + 1) : null;
+                }
+            }
+        }
+        return null;
+    }
+    // 中序遍历
+    public void inOrder(TreeLinkNode pNode) {
+        if (pNode != null) {
+            inOrder(pNode.left);
+            treeLinkNodes.add(pNode);
+            inOrder(pNode.right);
+        }
+    }
+}
+```
+
+上面的做法借助了`list`，空间复杂度是`O(n)`，时间上，遍历了两次，也是`O(n)`的时间复杂度。
+
+另外一种做法是，不借助额外的空间，直接查找下一个节点。
+分为几种情况讨论：
+- 当前节点为空，直接返回空
+- 当前节点不为空： 
+  - 如果当前节点的右节点不为空，那么下一个节点就是右节点的最左子孙节点。
+  - 如果当前节点的右节点为空，那么只能到父节点：
+    - 需要判断当前节点是不是父节点的左节点，如果是父节点的左节点，那么下一个节点就是父节点。
+    - 如果当前节点不是父节点的左节点，那么就是父节点的右节点，也就是下一个节点应该是父节点的父节点，或者更上一层。这个怎么判断呢？根据当前节点是不是右节点来判断，如果是右节点，则还需要往父节点的上走一层，如果不是右节点，则直接放回父节点。
+
+代码实现如下：
+```java
+        public TreeLinkNode GetNext(TreeLinkNode pNode) {
+            // 右节点不为空，直接找右节点的最左子孙节点
+            if (pNode.right != null) {
+                TreeLinkNode pRight = pNode.right;
+                while (pRight.left != null) {
+                    pRight = pRight.left;
+                }
+                return pRight;
+            }
+            // 右节点为空，但是当前节点是左节点，下一个就是其父节点
+            if (pNode.next != null && pNode.next.left == pNode) {
+                return pNode.next;
+            }
+            // 3.右节点为空，并且当前节点是右节点，那只能往上走
+            if (pNode.next != null) {
+                // 获取父节点
+                TreeLinkNode pNext = pNode.next;
+                // 判断父节点是不是同样是右节点，如果是，还需要往上走，如果不是，就可以直接放回其
+                while (pNext.next != null && pNext.next.right == pNext) {
+                    pNext = pNext.next;
+                }
+                return pNext.next;
+            }
+            return null;
+        }
+```
+
+时间复杂度：`O(n) ` 
+空间复杂度：`O(1)`
