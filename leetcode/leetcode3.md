@@ -33,7 +33,7 @@ s 由英文字母、数字、符号和空格组成
 来源：力扣（LeetCode）
 链接：https://leetcode-cn.com/problems/longest-substring-without-repeating-characters
 
-## 思路以及解答
+## 思路与解答
 这是一道滑动窗口的经典题目，也就是有两个指针，`low`和`high`，同时借助一个`hashmap`,遍历到每一个字符的时候，都要判断`hashmap`里面是否已经包含。
 - 如果不包含该字符，那么直接添加进去.
 - 如果已经包含该字符，则根据`key`取出`value`，也就是它的上一次出现的索引位置。

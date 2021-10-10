@@ -45,7 +45,7 @@ nums2.length == n
 链接：https://leetcode-cn.com/problems/median-of-two-sorted-arrays
 著作权归领扣网络所有。
 
-## 思路以及解答
+## 思路与解答
 思路一：数组是有序的，利用双指针分别指向数组的第一个元素，对比大小，分别往后移动，合并到新的数组，然后直接取出中位数。
 ```java
 class Solution {

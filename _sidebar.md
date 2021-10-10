@@ -54,5 +54,10 @@
     * [53. 表示数值的字符串](/剑指Offer/剑指Offer53-表示数值的字符串.md)
     * [54. 字符流中第一个不重复的字符](/剑指Offer/剑指Offer54-字符流中第一个不重复的字符.md)
 * LeetCode
-    * [1.两数之和](/leetcode/(1)两数之和.md)
+    * [1.两数之和](/leetcode/leetcode1.md)
+    * [2.两数相加](/leetcode/leetcode2.md)
+    * [3.无重复字符的最长子串](/leetcode/leetcode3.md)
+    * [4.寻找两个正序数组的中位数](/leetcode/leetcode4.md)
+    * [5.最长回文子串](/leetcode/leetcode5.md)
+    * [6.Z字型变换](/leetcode/leetcode6.md)
 
