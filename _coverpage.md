@@ -2,9 +2,12 @@
 
 # CodeSolution <small>0.0.2</small>
 > 刷题，永不停息
+> 纵使缓慢，驰而不息
+> 日拱一卒，功不唐捐
 
 - `剑指Offer`
 - `LeetCode`
+- `程序员面试宝典`
 
 ![](https://img.shields.io/badge/version-v0.0.1-green.svg)   ![](https://img.shields.io/badge/author-Aphysia-yellow.svg)   ![](https://img.shields.io/badge/license-MIT-blue.svg)
 
